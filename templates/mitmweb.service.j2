@@ -1,0 +1,14 @@
+[Unit]
+Description=mitmweb service
+After=network.target
+
+[Service]
+Type=simple
+User=mitmproxy
+EnvironmentFile=/etc/default/mitmweb
+ExecStart=mitmweb --no-web-open-browser --mode=${MITMWEB_MODE} --web-port=${MITMWEB_WEB_PORT} --web-iface=${MITMWEB_WEB_IFACE} --listen-port=${MITMWEB_PROXY_PORT} --listen-host=${MITMWEB_PROXY_HOST} --proxyauth ${MITMWEB_PROXY_AUTH} ${MITMWEB_ADDITIONAL_ARGS}
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

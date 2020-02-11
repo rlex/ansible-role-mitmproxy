@@ -1,0 +1,5 @@
+- name: restart mitmweb
+  systemd:
+    daemon_reload: true
+    name: mitmweb
+    state: restarted
